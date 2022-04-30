@@ -1,6 +1,7 @@
-var gulp = require('gulp');
-var bs = require('browser-sync').create();
-const sass = require('gulp-sass')(require('sass'));
+var gulp				= require('gulp');
+var bs				= require('browser-sync').create();
+const sass			= require('gulp-sass')(require('sass'));
+var autoprefixer 	= require('gulp-autoprefixer');
 
 
 
@@ -23,6 +24,9 @@ done();
 gulp.task('sass', function(done) {
 	gulp.src("src/sass/*.sass")
 		 .pipe(sass())
+		 .pipe(autoprefixer({
+			cascade: false
+		}))
 		 .pipe(gulp.dest("src/css"))
 		 .pipe(bs.stream());
 
